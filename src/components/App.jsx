@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import TodoItem from './TodoItem'
 import Form from './Form'
+import FilterButton from './FilterButton';
 
 const App = () => {
 
@@ -42,6 +43,9 @@ const App = () => {
     );
   }
 
+  const [filter, setFilter] = useState(null);
+  const filterItem = todo => ( filter === 'completed' ) ? todo.complete : (filter === 'active') ? !todo.complete : true;
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
@@ -56,13 +60,16 @@ const App = () => {
       />
       <label htmlFor="toggle-all">Tout compléter</label>
       <ul className="todo-list">
-        {todoList.map(todo => <TodoItem 
-            id={todo.id}
-            key={todo.id}
-            name={todo.name}
-            complete={todo.complete}
-            onComplete={() => handleComplete(todo.id)}
-          />)}
+          { todoList
+              .filter(filterItem)
+              .map((todo) => <TodoItem 
+                id={todo.id}
+                key={todo.id}
+                name={todo.name}
+                complete={todo.complete}
+                onComplete={() => handleComplete(todo.id)}
+              />)
+          }
       </ul>
     </section>
     {/* Ce footer doit être caché par défaut et affichée quand il y a des todos */}
@@ -74,21 +81,21 @@ const App = () => {
         </strong> tâches restantes
       </span>
       <ul className="filters">
-        <li>
-          <button className="selected">
-            Tous
-          </button>
-        </li>
-        <li>
-          <button>
-            Actifs
-          </button>
-        </li>
-        <li>
-          <button>
-            Complétés
-          </button>
-        </li>
+        <FilterButton 
+          label="Tous"
+          onClick={() => setFilter(null)}
+          selected={filter === null}
+        />
+        <FilterButton 
+          label="Complétés"
+          onClick={() => setFilter('completed')}
+          selected={filter === 'completed'}
+        />
+        <FilterButton 
+          label="Actifs"
+          onClick={() => setFilter('active')}
+          selected={filter === 'active'}
+        />
       </ul>
       {/* Caché si aucun élément complété restant */}
       <button className="clear-completed">
