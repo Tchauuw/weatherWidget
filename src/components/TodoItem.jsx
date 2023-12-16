@@ -6,7 +6,8 @@ const TodoItem = props => {
     complete,
     name,
     id,
-    onComplete
+    onComplete,
+    onDestroy
   } = props;
 
     return<li className={ complete ? 'completed' : ''}>
@@ -19,7 +20,7 @@ const TodoItem = props => {
               onChange={ onComplete } 
             />
            <label>{ name }</label>
-           <button className="destroy" />
+           <button className="destroy" onClick={ onDestroy }/>
          </div>
          <form>
            <input className="edit" defaultValue={ name } />

@@ -48,6 +48,12 @@ const App = () => {
 
   const leftTodos = todoList.filter((todo) => !todo.complete ).length;
 
+  const handleDestroy = (id) => {
+    setTodoList(
+      todoList.filter((todo) => todo.id !== id)
+    );
+  }
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
@@ -70,7 +76,8 @@ const App = () => {
                 name={todo.name}
                 complete={todo.complete}
                 onComplete={() => handleComplete(todo.id)}
-              />)
+                onDestroy={ () => handleDestroy(todo.id) }
+                />)
           }
       </ul>
     </section>
