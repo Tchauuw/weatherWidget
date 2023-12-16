@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoItem from './TodoItem'
+import Form from './Form'
 
 const App = () => {
 
@@ -22,14 +23,7 @@ const App = () => {
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
-      <form>
-        <input
-            className="new-todo"
-            placeholder="Qu'avez vous à faire ?"
-            autoFocus
-        />
-        <input className="hidden" type="submit" value="Ajouter" />
-      </form>
+     <Form />
     </header>
     {/* Cette section doit être cachée par défaut et affichée quand il y a des todos */}
     <section className="main">

@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 const TodoItem = props => {
 
@@ -6,7 +6,7 @@ const TodoItem = props => {
     complete,
     name,
     id
-  } = props
+  } = props;
 
     return<li className="completed">
          <div className="view">
@@ -21,4 +21,4 @@ const TodoItem = props => {
        </li>
 }
 
-export default TodoItem
+export default TodoItem;

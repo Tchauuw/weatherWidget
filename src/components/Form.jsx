@@ -1,23 +1,29 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-const Form = () => {
+const Form = props => {
+  
+  const [value, setValue] = useState('');
 
-  const [value, setValue] = useState('')
-
-  const handleClick = evt => {
-    setValue(evt.target.value)
+  const handleChange = evt => {
+    setValue(evt.target.value.charAt(0).toUpperCase() + evt.target.value.slice(1));
   }
-
-    return<form>
-    <input
+  
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    alert('Nouveau todo: ' + value);
+  }
+  
+  return<form onSubmit={handleSubmit}>
+      <input
+        type="text"
         className="new-todo"
-        placeholder="Qu'avez vous à faire ?"
-        onChange={ handleClick }
-        value={ value }
+        placeholder="Qu'avez-vous à faire ?"
+        onChange={handleChange}
+        value={value}
         autoFocus
-    />
-    <input className="hidden" type="submit" value="Ajouter"/>
-  </form>
+      />
+      <input type="submit" className="hidden" value="Ajouter" />
+    </form>
 }
 
-export default Form
+export default Form;
