@@ -46,6 +46,8 @@ const App = () => {
   const [filter, setFilter] = useState(null);
   const filterItem = todo => ( filter === 'completed' ) ? todo.complete : (filter === 'active') ? !todo.complete : true;
 
+  const leftTodos = todoList.filter((todo) => !todo.complete ).length;
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
@@ -77,8 +79,8 @@ const App = () => {
       {/* Ceci devrait être "0 restants" par défaut */}
       <span className="todo-count">
         <strong>
-          2
-        </strong> tâches restantes
+          { leftTodos }
+        </strong> { leftTodos <= 1 ? 'tâche restante' : 'tâches restantes' }
       </span>
       <ul className="filters">
         <FilterButton 
