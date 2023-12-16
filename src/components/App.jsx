@@ -1,29 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TodoItem from './TodoItem'
 import Form from './Form'
 
 const App = () => {
 
-  const todoList = [
+  const [todoList, setTodoList] = useState([
     {  
-        id: 'todo-1',  
-        name: 'Taper un tacos 5 viandes',  
-        complete: true}, 
-      {  
-        id: 'todo-2',  
-        name: 'Battre Mimie MATHY à la bagarre',  
-        complete: false}, 
-      {  
-        id: 'todo-3',  
-        name: 'Boire de la water avec JCVD',  
+      id: 'todo-1',  
+      name: 'Taper un tacos 5 viandes',  
+      complete: true
+    }, {  
+      id: 'todo-2',  
+      name: 'Battre Mimie MATHY à la bagarre',  
+      complete: false
+    }, {  
+      id: 'todo-3',  
+      name: 'Boire de la water avec JCVD',  
+      complete: false
+    }
+  ]);
+
+  const handleAdd = name => {
+    setTodoList([
+      ...todoList,
+      {
+        id: 'todo-' + todoList.length,
+        name: name,
         complete: false
       }
-]
+    ]);
+  }
 
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
-     <Form />
+     <Form onAdd={ handleAdd }/>
     </header>
     {/* Cette section doit être cachée par défaut et affichée quand il y a des todos */}
     <section className="main">
