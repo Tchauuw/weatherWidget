@@ -1,4 +1,5 @@
 import React from 'react'
+import TodoItem from './TodoItem'
 
 const App = () => {
 
@@ -23,39 +24,9 @@ const App = () => {
       />
       <label htmlFor="toggle-all">Tout compléter</label>
       <ul className="todo-list">
-        <li className="completed">
-          <div className="view">
-            <input className="toggle" type="checkbox" checked />
-            <label>Tester React</label>
-            <button className="destroy" />
-          </div>
-          <form>
-            <input className="edit" defaultValue="Tester React" />
-            <input type="submit" value="Valider" className="hidden" />
-          </form>
-        </li>
-        <li>
-          <div className="view">
-            <input className="toggle" type="checkbox" />
-            <label>Terminer le TP</label>
-            <button className="destroy" />
-          </div>
-          <form>
-            <input className="edit" defaultValue="Terminer le TP" />
-            <input type="submit" value="Valider" className="hidden" />
-          </form>
-        </li>
-        <li className="editing">
-          <div className="view">
-            <input className="toggle" type="checkbox" />
-            <label>Offrir du saucisson au prof</label>
-            <button className="destroy" />
-          </div>
-          <form>
-            <input className="edit" defaultValue="Offrir du saucisson au prof" />
-            <input type="submit" value="Valider" className="hidden" />
-          </form>
-        </li>
+        <TodoItem name="Taper un tacos 5 viandes" complete={ true } id="todo-1" />
+        <TodoItem name="Battre Mimie MATHY à la bagarre" complete={ false } id="todo-2" />
+        <TodoItem name="Boire de la water avec JCVD" complete={ false } id="todo-3" />
       </ul>
     </section>
     {/* Ce footer doit être caché par défaut et affichée quand il y a des todos */}
