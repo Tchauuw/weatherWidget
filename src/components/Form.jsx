@@ -12,7 +12,7 @@ const Form = () => {
     <input
         className="new-todo"
         placeholder="Qu'avez vous à faire ?"
-        onChange={ handleClick() }
+        onChange={ handleClick }
         value={ value }
         autoFocus
     />
