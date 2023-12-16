@@ -3,6 +3,22 @@ import TodoItem from './TodoItem'
 
 const App = () => {
 
+  const todoList = [
+    {  
+        id: 'todo-1',  
+        name: 'Taper un tacos 5 viandes',  
+        complete: true}, 
+      {  
+        id: 'todo-2',  
+        name: 'Battre Mimie MATHY à la bagarre',  
+        complete: false}, 
+      {  
+        id: 'todo-3',  
+        name: 'Boire de la water avec JCVD',  
+        complete: false
+      }
+]
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
@@ -24,9 +40,12 @@ const App = () => {
       />
       <label htmlFor="toggle-all">Tout compléter</label>
       <ul className="todo-list">
-        <TodoItem name="Taper un tacos 5 viandes" complete={ true } id="todo-1" />
-        <TodoItem name="Battre Mimie MATHY à la bagarre" complete={ false } id="todo-2" />
-        <TodoItem name="Boire de la water avec JCVD" complete={ false } id="todo-3" />
+        {todoList.map(todo => <TodoItem 
+            id={todo.id}
+            key={todo.id}
+            name={todo.name}
+            complete={todo.complete}
+          />)}
       </ul>
     </section>
     {/* Ce footer doit être caché par défaut et affichée quand il y a des todos */}
