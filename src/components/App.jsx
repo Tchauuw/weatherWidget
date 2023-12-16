@@ -31,6 +31,17 @@ const App = () => {
     ]);
   }
 
+  const handleComplete = (todoChecked) => {
+    setTodoList(
+      todoList.map((todo) => (todoChecked === todo.id)
+        ? {
+          ...todo,
+          complete: !todo.complete
+        } : todo
+      )
+    );
+  }
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
@@ -50,6 +61,7 @@ const App = () => {
             key={todo.id}
             name={todo.name}
             complete={todo.complete}
+            onComplete={() => handleComplete(todo.id)}
           />)}
       </ul>
     </section>

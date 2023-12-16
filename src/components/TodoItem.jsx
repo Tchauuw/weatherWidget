@@ -5,12 +5,19 @@ const TodoItem = props => {
   const {
     complete,
     name,
-    id
+    id,
+    onComplete
   } = props;
 
-    return<li className="completed">
+    return<li className={ complete ? 'completed' : ''}>
          <div className="view">
-           <input className="toggle" type="checkbox" checked={ complete } id={ id }/>
+            <input 
+              className="toggle" 
+              type="checkbox" 
+              checked={ complete } 
+              id={ `todo-${id}`} 
+              onChange={ onComplete } 
+            />
            <label>{ name }</label>
            <button className="destroy" />
          </div>
