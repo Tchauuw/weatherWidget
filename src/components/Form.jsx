@@ -4,12 +4,15 @@ const Form = props => {
   
   const [value, setValue] = useState('');
 
+  const onAdd = props.onAdd;
+
   const handleChange = evt => {
     setValue(evt.target.value.charAt(0).toUpperCase() + evt.target.value.slice(1));
   }
   
   const handleSubmit = evt => {
     evt.preventDefault();
+    onAdd(value);
     alert('Nouveau todo: ' + value);
   }
   
@@ -22,7 +25,7 @@ const Form = props => {
         value={value}
         autoFocus
       />
-      <input type="submit" className="hidden" value="Ajouter" />
+      <input className="hidden" type="submit" value="Ajouter" />
     </form>
 }
 
