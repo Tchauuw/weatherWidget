@@ -75,13 +75,22 @@ const App = () => {
       : todo
       )
     )
-    // setEditing(null)
   }
     
   
   const handleEdit = (id) => {
     setEditing(id);
     console.log(`Tâche éditée - ID: ${id}`);
+  }
+
+  const handleToggleAll = () => {
+    setTodoList(todoList.map((todo) => ({
+          ...todo,
+          complete: leftTodos > 0
+          // complete: !todo.complete
+        })  
+      )
+    )
   }
 
   return <section className="todoapp">
@@ -95,6 +104,8 @@ const App = () => {
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
+        checked={leftTodos === 0}
+        onChange={handleToggleAll}
       />
       <label htmlFor="toggle-all">Tout compléter</label>
       <ul className="todo-list">
