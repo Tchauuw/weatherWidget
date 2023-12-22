@@ -93,13 +93,20 @@ const App = () => {
     )
   }
 
+  const handleDelete = () => {
+    setTodoList(todoList.filter((todo) => (todo.complete === false)
+      )
+    )
+  }
+
   return <section className="todoapp">
     <header className="header">
       <h1>Todo</h1>
      <Form onAdd={ handleAdd }/>
     </header>
     {/* Cette section doit être cachée par défaut et affichée quand il y a des todos */}
-    <section className="main">
+    {/* {leftTodos > 0 && <section className="main"> */}
+    {todoList.length > 0 && <section className="main">
       <input
         id="toggle-all"
         className="toggle-all"
@@ -124,9 +131,9 @@ const App = () => {
                 />)
           }
       </ul>
-    </section>
+    </section>}
     {/* Ce footer doit être caché par défaut et affichée quand il y a des todos */}
-    <footer className="footer">
+    {todoList.length > 0 && <footer className="footer">
       {/* Ceci devrait être "0 restants" par défaut */}
       <span className="todo-count">
         <strong>
@@ -151,10 +158,13 @@ const App = () => {
         />
       </ul>
       {/* Caché si aucun élément complété restant */}
-      <button className="clear-completed">
+      <button 
+        className={ todoList.length > leftTodos ? 'clear-completed' : 'hidden' }
+        onClick={ handleDelete }
+      >
         Effacer les complétés
       </button>
-    </footer>
+    </footer>}
   </section>
 }
 
